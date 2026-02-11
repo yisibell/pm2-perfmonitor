@@ -1,0 +1,15 @@
+# Changelog
+
+
+## v1.0.1
+
+
+### 🏡 Chore
+
+- Init ([297fff0](https://github.com/yisibell/pm2-perfmonitor/commit/297fff0))
+- Init release ([72dc521](https://github.com/yisibell/pm2-perfmonitor/commit/72dc521))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
