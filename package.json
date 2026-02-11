@@ -1,0 +1,34 @@
+{
+  "name": "pm2-perfmonitor",
+  "version": "1.0.0",
+  "description": "A pm2 module for performance monitoring",
+  "author": "yisibell",
+  "license": "MIT",
+  "main": "lib/app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yisibell/pm2-perfmonitor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yisibell/pm2-perfmonitor/issues"
+  },
+  "homepage": "https://github.com/yisibell/pm2-perfmonitor",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pm2",
+    "monitor"
+  ],
+  "apps": [
+    {
+      "name": "pm2-perfmonitor",
+      "script": "lib/app.js",
+      "max_memory_restart": "500M"
+    }
+  ],
+  "dependencies": {
+    "pm2": "latest",
+    "pmx": "latest"
+  }
+}
