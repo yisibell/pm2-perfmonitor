@@ -14,7 +14,8 @@
   },
   "homepage": "https://github.com/yisibell/pm2-perfmonitor",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "changelogen --release && npm publish --access=public && git push --follow-tags"
   },
   "keywords": [
     "pm2",
@@ -30,5 +31,9 @@
   "dependencies": {
     "pm2": "latest",
     "pmx": "latest"
+  },
+  "devDependencies": {
+    "changelogen": "^0.6.2",
+    "cz-conventional-changelog": "^3.3.0"
   }
 }
