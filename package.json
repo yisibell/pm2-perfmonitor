@@ -2,7 +2,7 @@
   "name": "pm2-perfmonitor",
   "version": "1.0.1",
   "description": "A pm2 module for performance monitoring",
-  "author": "yisibell",
+  "author": "elenh",
   "license": "MIT",
   "main": "lib/app.js",
   "repository": {
