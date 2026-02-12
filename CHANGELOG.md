@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.1.2
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v1.1.1...v1.1.2)
+
+### 📖 Documentation
+
+- Update readme ([afd4af4](https://github.com/yisibell/pm2-perfmonitor/commit/afd4af4))
+
+### 🏡 Chore
+
+- **docs:** Update readme ([630d801](https://github.com/yisibell/pm2-perfmonitor/commit/630d801))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.1.1
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v1.1.0...v1.1.1)
