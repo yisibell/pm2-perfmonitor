@@ -1,6 +1,6 @@
 {
   "name": "pm2-perfmonitor",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A pm2 module for performance monitoring",
   "author": "elenh",
   "license": "MIT",
