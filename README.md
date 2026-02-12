@@ -14,15 +14,15 @@ $ pm2 install pm2-perfmonitor
 
 # Configure
 
-|            Property             | Default Value | Description                |
-| :-----------------------------: | :-----------: | :------------------------- |
-|            `enabled`            |    `true`     | 是否启用该模块             |
-|          `excludeApps`          |       -       | 指定需要排除守护的应用名   |
-|          `includeApps`          |       -       | 指定需要守护的应用名       |
-|        `workerInterval`         |    `60000`    | 定时任务执行时间间隔（ms） |
-|        `zombieDetection`        |    `true`     | 是否开启僵尸进程守护       |
-|         `zombieMaxHits`         |     `10`      | 僵尸状态最大出现次数       |
-| `autoRestartWhenZombieDetected` |    `true`     | 是否对僵尸进程自动重启     |
+|            Property             | Default Value |                               Description                                |
+| :-----------------------------: | :-----------: | :----------------------------------------------------------------------: |
+|            `enabled`            |    `true`     |                  Specify whether to enable this module                   |
+|          `excludeApps`          |       -       | Specify the application name that needs to be excluded from guardianship |
+|          `includeApps`          |       -       |          Specify the application name that needs to be guarded           |
+|        `workerInterval`         |    `60000`    |                    Timed task execution interval (ms)                    |
+|        `zombieDetection`        |    `true`     |           Specify whether to enable zombie process protection            |
+|         `zombieMaxHits`         |     `10`      |        Specify the maximum occurrence frequency of zombie status         |
+| `autoRestartWhenZombieDetected` |    `true`     |        Specify whether to automatically restart zombie processes         |
 
 # How to set these values ?
 
@@ -30,5 +30,5 @@ After having installed the module you have to type : `pm2 set pm2-perfmonitor:<p
 
 **e.g:**
 
-- `pm2 set pm2-perfmonitor:includeApps myNuxtApp1, myNextApp2` （只对应用名为：myNuxtApp1 和 myNextApp2 的应用进行检测）
-- `pm2 set pm2-perfmonitor:workerInterval 120000` （2分钟检测一次）
+- `pm2 set pm2-perfmonitor:includeApps myNuxtApp1, myNextApp2` （Only detect applications named `myNuxtApp1` and `myNextApp2`）
+- `pm2 set pm2-perfmonitor:workerInterval 120000` （Check every `2` minutes）
