@@ -5,6 +5,9 @@
   "author": "elenh",
   "license": "MIT",
   "main": "lib/app.js",
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/yisibell/pm2-perfmonitor.git"
@@ -14,7 +17,8 @@
   },
   "homepage": "https://github.com/yisibell/pm2-perfmonitor",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2 delete app1 || true && pm2 start ecosystem.app.config.cjs",
+    "dev": "pm2 start ecosystem.dev.config.cjs",
     "release": "changelogen --release && npm publish --access=public && git push --follow-tags"
   },
   "keywords": [
@@ -28,6 +32,7 @@
       "max_memory_restart": "500M"
     }
   ],
+  "config": {},
   "dependencies": {
     "pm2": "latest",
     "pmx": "latest"
