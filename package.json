@@ -1,8 +1,11 @@
 {
   "name": "pm2-perfmonitor",
   "version": "1.1.1",
-  "description": "A pm2 module for performance monitoring",
-  "author": "elenh",
+  "description": "A pm2 module for performance monitoring. Automatically detect zombie processes and restart it",
+  "author": {
+    "name": "elenh",
+    "email": "yisiwings@163.com"
+  },
   "license": "MIT",
   "main": "lib/app.js",
   "files": [
@@ -23,7 +26,8 @@
   },
   "keywords": [
     "pm2",
-    "monitor"
+    "monitor",
+    "zombie process"
   ],
   "apps": [
     {

@@ -1,16 +1,19 @@
 # pm2-perfmonitor
 
-A pm2 module for performance monitor
+A pm2 module for performance monitor.
 
 # Features
 
-- Automatically detect zombie processes and restart it.
+- Automatically detect **zombie** processes and restart it.
+- Monitor the number of zombie process restarts (pm2 monit).
 
-# Install
+# Installation
 
 ```bash
 $ pm2 install pm2-perfmonitor
 ```
+
+> NOTE: the command is `pm2 install` NOT `npm install`
 
 # Configure
 
