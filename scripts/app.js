@@ -2,8 +2,17 @@ const pm2 = require('pm2')
 const minimist = require('minimist')
 
 /**
+ * @typedef { Object } MultiAppConfig
+ * @property { pm2.StartOptions[] } apps
+ */
+
+/**
+ * @typedef { pm2.StartOptions | MultiAppConfig } AppConfig
+ */
+
+/**
  * @param { string } env
- * @returns { pm2.StartOptions }
+ * @returns { AppConfig }
  */
 const getAppConfig = (env) => {
   if (!env) {
@@ -14,7 +23,7 @@ const getAppConfig = (env) => {
 }
 
 /**
- * @param { pm2.StartOptions } appConfig
+ * @param { AppConfig } appConfig
  * @returns { string }
  */
 const getAppName = (appConfig) => {
@@ -33,7 +42,6 @@ const deleteAppAsync = (p) => {
     pm2.delete(p, (err) => {
       if (err) {
         console.error(`删除应用 "${p}" 失败:`, err)
-
         return reject(err)
       }
 
@@ -90,10 +98,10 @@ const run = () => {
         if (existingApp) {
           await deleteAppAsync(existingApp.name)
 
-          console.log(`应用 [${appName}] 已删除!`)
+          console.log(`应用 "${appName}" 已删除!`)
         }
 
-        console.log(`应用 [${appName}] 重新启动中...`)
+        console.log(`应用 "${appName}" 重新启动中...`)
 
         await startAppAsync(appConfig)
       } catch (err) {

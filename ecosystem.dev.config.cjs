@@ -1,9 +1,12 @@
+/**
+ * @type { { apps: import('pm2').StartOptions[] } }
+ */
 module.exports = {
   apps: [
     {
       name: 'app2',
       script: './test/test.js',
-      mode: 'cluster',
+      exec_mode: 'cluster',
       instances: 4,
     },
     {
