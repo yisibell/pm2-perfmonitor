@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.2.0
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v1.1.2...v1.2.0)
+
+### 🚀 Enhancements
+
+- Add zombieMaxRestarts ([68aff82](https://github.com/yisibell/pm2-perfmonitor/commit/68aff82))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.1.2
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v1.1.1...v1.1.2)
