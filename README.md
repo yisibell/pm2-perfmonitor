@@ -17,15 +17,16 @@ $ pm2 install pm2-perfmonitor
 
 # Configure
 
-|            Property             | Default Value |                               Description                                |
-| :-----------------------------: | :-----------: | :----------------------------------------------------------------------: |
-|            `enabled`            |    `true`     |                  Specify whether to enable this module                   |
-|          `excludeApps`          |       -       | Specify the application name that needs to be excluded from guardianship |
-|          `includeApps`          |       -       |          Specify the application name that needs to be guarded           |
-|        `workerInterval`         |    `60000`    |                    Timed task execution interval (ms)                    |
-|        `zombieDetection`        |    `true`     |           Specify whether to enable zombie process protection            |
-|         `zombieMaxHits`         |     `10`      |        Specify the maximum occurrence frequency of zombie status         |
-| `autoRestartWhenZombieDetected` |    `true`     |        Specify whether to automatically restart zombie processes         |
+|            Property             | Default Value |                                     Description                                      |
+| :-----------------------------: | :-----------: | :----------------------------------------------------------------------------------: |
+|            `enabled`            |    `true`     |                        Specify whether to enable this module                         |
+|          `excludeApps`          |       -       |       Specify the application name that needs to be excluded from guardianship       |
+|          `includeApps`          |       -       |                Specify the application name that needs to be guarded                 |
+|        `workerInterval`         |    `60000`    |                          Timed task execution interval (ms)                          |
+|        `zombieDetection`        |    `true`     |                 Specify whether to enable zombie process protection                  |
+|         `zombieMaxHits`         |     `10`      |              Specify the maximum occurrence frequency of zombie status               |
+| `autoRestartWhenZombieDetected` |    `true`     |              Specify whether to automatically restart zombie processes               |
+|       `zombieMaxRestarts`       |      `0`      | The maximum number of zombie process restarts can be set to `0` to indicate no limit |
 
 # How to set these values ?
 
