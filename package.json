@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/yisibell/pm2-perfmonitor",
   "scripts": {
-    "start": "pm2 delete app1 || true && pm2 start ecosystem.app.config.cjs",
+    "start": "node ./scripts/app.js --env=app",
     "dev": "pm2 start ecosystem.dev.config.cjs",
     "release": "changelogen --release && npm publish --access=public && git push --follow-tags"
   },
@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "changelogen": "^0.6.2",
-    "cz-conventional-changelog": "^3.3.0"
+    "cz-conventional-changelog": "^3.3.0",
+    "minimist": "^1.2.8"
   }
 }
