@@ -4,8 +4,8 @@
 module.exports = {
   apps: [
     {
-      name: 'app2',
-      script: './test/test.js',
+      name: 'app-dev',
+      script: './test/server.js',
       exec_mode: 'cluster',
       instances: 4,
     },

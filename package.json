@@ -20,8 +20,12 @@
   },
   "homepage": "https://github.com/yisibell/pm2-perfmonitor",
   "scripts": {
+    "start-or-restart:app": "pm2 startOrRestart ecosystem.app.config.cjs --update-env",
+    "start:app": "pm2 start ecosystem.app.config.cjs",
+    "restart:app": "pm2 restart ecosystem.app.config.cjs",
+    "delete-start:app": "pm2 delete app1 || true && pm2 start ecosystem.app.config.cjs",
     "start": "node ./scripts/app.js --env=app",
-    "dev": "pm2 start ecosystem.dev.config.cjs",
+    "dev": "pm2 restart ecosystem.dev.config.cjs",
     "release": "changelogen --release && npm publish --access=public && git push --follow-tags"
   },
   "keywords": [
