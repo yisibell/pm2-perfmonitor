@@ -7,7 +7,7 @@ module.exports = {
   apps: [
     {
       name: 'app3',
-      script: path.resolve(process.cwd(), './test/server.js'),
+      script: path.resolve(process.cwd(), './test/server.mjs'),
       exec_mode: 'cluster',
       instances: 4,
       env: {
