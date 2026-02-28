@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v1.2.2
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v1.2.1...v1.2.2)
+
+### 🏡 Chore
+
+- Add start scripts ([87a7568](https://github.com/yisibell/pm2-perfmonitor/commit/87a7568))
+- Update scripts ([263a202](https://github.com/yisibell/pm2-perfmonitor/commit/263a202))
+- Add sendMessage util ([c52926e](https://github.com/yisibell/pm2-perfmonitor/commit/c52926e))
+- Refactor funcs ([2576076](https://github.com/yisibell/pm2-perfmonitor/commit/2576076))
+
+### 🤖 CI
+
+- Update pm2 start script ([51a6ba5](https://github.com/yisibell/pm2-perfmonitor/commit/51a6ba5))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.2.1
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v1.2.0...v1.2.1)

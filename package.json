@@ -1,6 +1,6 @@
 {
   "name": "pm2-perfmonitor",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A pm2 module for performance monitoring. Automatically detect zombie processes and restart it",
   "author": {
     "name": "elenh",
