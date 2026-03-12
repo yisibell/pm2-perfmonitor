@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.1.3
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.1.2...v2.1.3)
+
+### 🩹 Fixes
+
+- Execa `stdio` error ([22bb090](https://github.com/yisibell/pm2-perfmonitor/commit/22bb090))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.1.2
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.1.1...v2.1.2)
