@@ -46,20 +46,16 @@ const getOutputDir = () => {
  * @returns { inspector.Profiler.StopReturnType }
  */
 const sessionPost = (method, params) => {
-  return (
-    new Promise() <
-    object >
-    ((resolve, reject) => {
-      if (!session) {
-        reject(new Error('inspector session not initialized'))
-        return
-      }
-      session.post(method, params || {}, (err, result) => {
-        if (err) reject(err)
-        else resolve(result || {})
-      })
+  return new Promise((resolve, reject) => {
+    if (!session) {
+      reject(new Error('inspector session not initialized'))
+      return
+    }
+    session.post(method, params || {}, (err, result) => {
+      if (err) reject(err)
+      else resolve(result || {})
     })
-  )
+  })
 }
 
 const startCpuProfile = async () => {
@@ -87,30 +83,30 @@ const stopCpuProfile = async () => {
 const run = () => {
   const outputDir = getOutputDir()
 
-  console.info('[cpu-profile]', `signal=${signal}`, `dir=${outputDir}`)
+  console.info('[cpu-profile]', `dir=${outputDir}`)
 
   process.on('message', async (packet) => {
-    console.info(
-      '[cpu-profile]',
-      `received ${signal}`,
-      `pid=${process.pid}`,
-      packet,
-    )
+    console.info('[cpu-profile]', `pid=${process.pid}`, packet)
 
-    // try {
-    //   if (isProfiling) {
-    //     await stopCpuProfile()
-    //   } else {
-    //     await startCpuProfile()
-    //   }
-    // } catch (err) {
-    //   // 避免异常影响主流程
-    //   console.error('[cpu-profile]', err)
+    try {
+      const eventName = packet?.data?.event
 
-    //   session?.disconnect()
-    //   session = null
-    //   isProfiling = false
-    // }
+      if (eventName === 'pm2-perfmonitor:cpu-profile-start') {
+        if (isProfiling) {
+          await stopCpuProfile()
+        }
+
+        await startCpuProfile()
+      } else if (eventName === 'pm2-perfmonitor:cpu-profile-stop') {
+        await stopCpuProfile()
+      }
+    } catch (err) {
+      console.error('[cpu-profile]', err)
+
+      session?.disconnect()
+      session = null
+      isProfiling = false
+    }
   })
 }
 

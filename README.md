@@ -12,7 +12,7 @@ A pm2 module for performance monitor.
 # Installation
 
 ```bash
-# install
+# install or update
 $ pm2 install pm2-perfmonitor
 
 # uninstall
@@ -37,7 +37,8 @@ $ pm2 uninstall pm2-perfmonitor
 |     `cpuOverloadThreshold`      |        `90`         |                           Specify the threshold for determining CPU overload                            |      v2      |
 |      `cpuOverloadMaxHits`       |         `5`         | Maximum number of consecutive occurrences of CPU overload allowed (automatically restarts when reached) |      v2      |
 | `enableNodeInspectorCollection` |       `false`       |                    Specify whether to enable `node:inspector` performance collection                    |      v2      |
-|     `enablePerfCollection`      |       `true`        |                         Specify whether to enable `perf` performance collection                         |      v2      |
+|  `nodeInspectorSampleDuration`  |        `10`         |                  Specify the performance collection duration (s) for `node:inspector`                   |      v2      |
+|     `enablePerfCollection`      |       `false`       |                         Specify whether to enable `perf` performance collection                         |      v2      |
 |    `perfReportGenerationDir`    | `/var/log/pm2/perf` |                   Specify the directory for generating performance reports for `perf`                   |      v2      |
 |         `flamegraphDir`         |  `/opt/FlameGraph`  |                    Specify the directory for `flamegraph` flame map generation tool                     |      v2      |
 |      `perfSampleDuration`       |        `10`         |                              Specify the sampling duration (s) for `perf`                               |      v2      |
