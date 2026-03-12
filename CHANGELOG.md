@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.1.2
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.1.1...v2.1.2)
+
+### 🩹 Fixes
+
+- Cpu overload restarts (failed) stats ([94d7ac1](https://github.com/yisibell/pm2-perfmonitor/commit/94d7ac1))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.1.1
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.1.0...v2.1.1)
