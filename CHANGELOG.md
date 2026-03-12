@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v2.1.0
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v1.2.3...v2.1.0)
+
+### 🚀 Enhancements
+
+- Add cpu overload supports ([d9546f7](https://github.com/yisibell/pm2-perfmonitor/commit/d9546f7))
+- Update `perf` sampling ([d78ff6a](https://github.com/yisibell/pm2-perfmonitor/commit/d78ff6a))
+- V2 ([83e436b](https://github.com/yisibell/pm2-perfmonitor/commit/83e436b))
+
+### ✅ Tests
+
+- Add test ([37996da](https://github.com/yisibell/pm2-perfmonitor/commit/37996da))
+
+### 🤖 CI
+
+- Remove list apps script ([bf51ec6](https://github.com/yisibell/pm2-perfmonitor/commit/bf51ec6))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.2.3
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v1.2.2...v1.2.3)
