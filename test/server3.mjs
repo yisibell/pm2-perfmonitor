@@ -16,10 +16,6 @@ server.listen(PORT, '127.0.0.1', () => {
   console.log('Listening on 127.0.0.1:3000')
 })
 
-process.on('message', (e) => {
-  console.log('>>>>>>>>>>>>>>>', e.data.event)
-})
-
 // -------------------- SERVER END-----------------------
 
 let session = null
@@ -41,7 +37,7 @@ const getOutputDir = () => {
     if (ok) return ok
   }
 
-  return ensureDir(path.resolve(process.cwd(), './tmp'))
+  return ensureDir(path.resolve(process.cwd(), './var/log/pm2'))
 }
 
 /**
@@ -89,15 +85,11 @@ const stopCpuProfile = async () => {
 }
 
 const run = () => {
-  if (process.env.CPU_PROFILE_SIGNAL_DISABLED === '1') return
-
-  const signal = process.env.CPU_PROFILE_SIGNAL || 'message'
-
   const outputDir = getOutputDir()
 
   console.info('[cpu-profile]', `signal=${signal}`, `dir=${outputDir}`)
 
-  process.on(signal, async (packet) => {
+  process.on('message', async (packet) => {
     console.info(
       '[cpu-profile]',
       `received ${signal}`,
@@ -105,23 +97,20 @@ const run = () => {
       packet,
     )
 
-    try {
-      if (isProfiling) {
-        await stopCpuProfile()
-      } else {
-        await startCpuProfile()
-      }
-    } catch (err) {
-      // 避免异常影响主流程
-      console.error('[cpu-profile]', err)
-      try {
-        session?.disconnect()
-      } catch {
-        // ignore
-      }
-      session = null
-      isProfiling = false
-    }
+    // try {
+    //   if (isProfiling) {
+    //     await stopCpuProfile()
+    //   } else {
+    //     await startCpuProfile()
+    //   }
+    // } catch (err) {
+    //   // 避免异常影响主流程
+    //   console.error('[cpu-profile]', err)
+
+    //   session?.disconnect()
+    //   session = null
+    //   isProfiling = false
+    // }
   })
 }
 
