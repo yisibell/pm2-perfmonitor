@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.4.2
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.4.1...v2.4.2)
+
+### 🏡 Chore
+
+- Update alert msg format ([7264b55](https://github.com/yisibell/pm2-perfmonitor/commit/7264b55))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.4.1
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.4.0...v2.4.1)
