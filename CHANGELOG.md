@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.3.0
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.2.0...v2.3.0)
+
+### 🚀 Enhancements
+
+- Supports sending alert ([db19f96](https://github.com/yisibell/pm2-perfmonitor/commit/db19f96))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.2.0
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.1.6...v2.2.0)
