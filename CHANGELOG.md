@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.3.2
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.3.1...v2.3.2)
+
+### 🩹 Fixes
+
+- Catch pidusage error ([e6b47be](https://github.com/yisibell/pm2-perfmonitor/commit/e6b47be))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.3.1
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.3.0...v2.3.1)
