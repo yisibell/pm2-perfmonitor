@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.1.5
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.1.4...v2.1.5)
+
+### 🩹 Fixes
+
+- Throttle timer running ([eed08e5](https://github.com/yisibell/pm2-perfmonitor/commit/eed08e5))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.1.4
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.1.3...v2.1.4)
