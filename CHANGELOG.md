@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.3.1
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.3.0...v2.3.1)
+
+### 🩹 Fixes
+
+- Using pm2's cpu usage when sys cpu usage is undefined ([b64d527](https://github.com/yisibell/pm2-perfmonitor/commit/b64d527))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.3.0
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.2.0...v2.3.0)
