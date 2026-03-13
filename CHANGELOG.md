@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.2.0
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.1.6...v2.2.0)
+
+### 🚀 Enhancements
+
+- Using `pidusage` to get CPU usage instead of `pm2 list` ([861544d](https://github.com/yisibell/pm2-perfmonitor/commit/861544d))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.1.6
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.1.5...v2.1.6)
