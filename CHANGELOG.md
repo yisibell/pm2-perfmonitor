@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.4.1
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.4.0...v2.4.1)
+
+### 🩹 Fixes
+
+- Import error ([8b43f12](https://github.com/yisibell/pm2-perfmonitor/commit/8b43f12))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.4.0
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.3.2...v2.4.0)
