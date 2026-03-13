@@ -44,6 +44,7 @@
   "dependencies": {
     "execa": "^9.6.1",
     "fs-extra": "^11.3.4",
+    "pidusage": "^4.0.1",
     "pm2": "latest",
     "pmx": "latest"
   },
