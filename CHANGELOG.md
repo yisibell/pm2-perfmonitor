@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.4.0
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.3.2...v2.4.0)
+
+### 🚀 Enhancements
+
+- Supports show job host name and send times ([39c9333](https://github.com/yisibell/pm2-perfmonitor/commit/39c9333))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.3.2
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.3.1...v2.3.2)
