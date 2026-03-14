@@ -44,6 +44,9 @@ $ pm2 uninstall pm2-perfmonitor
 |      `perfSampleDuration`       |        `10`         |                              Specify the sampling duration (s) for `perf`                               |      v2      |
 |      `perfSampleFrequency`      |        `99`         |                             Specify the sampling frequency (Hz) for `perf`                              |      v2      |
 
+
+> Please see the details for all configurable options：[Default Options](./lib//defaults.js)
+
 # How to set these values ?
 
 After having installed the module you have to type : `pm2 set pm2-perfmonitor:<param> <value>`
@@ -53,3 +56,4 @@ After having installed the module you have to type : `pm2 set pm2-perfmonitor:<p
 - `pm2 set pm2-perfmonitor:includeApps myNuxtApp1, myNextApp2` （Only detect applications named `myNuxtApp1` and `myNextApp2`）
 - `pm2 set pm2-perfmonitor:workerInterval 120000` （Check every `2` minutes）
 - `pm2 set pm2-perfmonitor:cpuOverloadDetection true`（enable **CPU overload** protection）
+- `pm2 set pm2-perfmonitor:zombieProcessDetectionStrategy zombie-state-and-zero-cpu`（Set the strategy for detecting zombie processes to: system process status is **Z** and CPU usage is consistently **0%**）
