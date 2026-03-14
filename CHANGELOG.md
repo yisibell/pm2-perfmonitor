@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.5.2
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.5.1...v2.5.2)
+
+### 📖 Documentation
+
+- Update pkg description ([80628c6](https://github.com/yisibell/pm2-perfmonitor/commit/80628c6))
+
+### ❤️ Contributors
+
+- Elenh ([@yisibell](https://github.com/yisibell))
+
 ## v2.5.1
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.5.0...v2.5.1)
