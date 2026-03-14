@@ -1,7 +1,7 @@
 {
   "name": "pm2-perfmonitor",
   "version": "2.5.1",
-  "description": "A pm2 module for performance monitoring. Automatically detect zombie processes and restart it",
+  "description": "A pm2 module for zombie process and CPU overload detection.",
   "author": {
     "name": "elenh",
     "email": "yisiwings@163.com"
@@ -31,7 +31,8 @@
   "keywords": [
     "pm2",
     "monitor",
-    "zombie process"
+    "zombie process",
+    "cpu overload"
   ],
   "apps": [
     {

@@ -1,6 +1,6 @@
 # pm2-perfmonitor
 
-A pm2 module for performance monitor.
+A pm2 module for **zombie process** and **CPU overload** detection.
 
 # Features
 
