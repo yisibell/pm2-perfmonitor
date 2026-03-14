@@ -16,6 +16,7 @@ const minimist = require('minimist')
  */
 const getAppConfig = (env) => {
   if (!env) {
+    // eslint-disable-next-line n/no-missing-require
     return require('../ecosystem.config.cjs')
   }
 
