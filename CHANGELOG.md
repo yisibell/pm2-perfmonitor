@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v2.5.0
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.4.2...v2.5.0)
+
+### 🚀 Enhancements
+
+- Add `zombieProcessDetectionStrategy` ([86f3ae6](https://github.com/yisibell/pm2-perfmonitor/commit/86f3ae6))
+
+### 🏡 Chore
+
+- Add eslint supports ([287f3b6](https://github.com/yisibell/pm2-perfmonitor/commit/287f3b6))
+
+### ❤️ Contributors
+
+- Elenh ([@yisibell](https://github.com/yisibell))
+
 ## v2.4.2
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.4.1...v2.4.2)
