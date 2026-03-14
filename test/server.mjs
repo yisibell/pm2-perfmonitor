@@ -1,4 +1,5 @@
 import { createServer } from 'node:http'
+import process from 'node:process'
 
 const { PORT = 3000 } = process.env
 
