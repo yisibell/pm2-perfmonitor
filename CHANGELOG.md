@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.6.0
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.5.2...v2.6.0)
+
+### 🚀 Enhancements
+
+- Add **CPU (sys)** and **CPU (pm2)** metrics; warning abnormal monit data ([9aeb59f](https://github.com/yisibell/pm2-perfmonitor/commit/9aeb59f))
+
+### ❤️ Contributors
+
+- Elenh ([@yisibell](https://github.com/yisibell))
+
 ## v2.5.2
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.5.1...v2.5.2)
