@@ -1,6 +1,6 @@
 {
   "name": "pm2-perfmonitor",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "A pm2 module for zombie process and CPU overload detection.",
   "author": {
     "name": "elenh",
