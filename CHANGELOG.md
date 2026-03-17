@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.6.2
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.6.1...v2.6.2)
+
+### 🏡 Chore
+
+- Update default `cpuOverloadThreshold` to `99` ([f02e1d4](https://github.com/yisibell/pm2-perfmonitor/commit/f02e1d4))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.6.1
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.6.0...v2.6.1)
