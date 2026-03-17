@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v2.6.3
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.6.2...v2.6.3)
+
 ## v2.6.2
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.6.1...v2.6.2)
