@@ -34,7 +34,7 @@ $ pm2 uninstall pm2-perfmonitor
 | `autoRestartWhenZombieDetected` |       `true`        |                        Specify whether to automatically restart zombie processes                        | v1 and above |
 |       `zombieMaxRestarts`       |         `0`         |      Specify the maximum number of restarts for zombie processes (set to `0` to indicate no limit)      | v1 and above |
 |     `cpuOverloadDetection`      |       `false`       |                            Specify whether to enable CPU overload protection                            |      v2      |
-|     `cpuOverloadThreshold`      |        `90`         |                           Specify the threshold for determining CPU overload                            |      v2      |
+|     `cpuOverloadThreshold`      |        `99`         |                           Specify the threshold for determining CPU overload                            |      v2      |
 |      `cpuOverloadMaxHits`       |         `5`         | Maximum number of consecutive occurrences of CPU overload allowed (automatically restarts when reached) |      v2      |
 | `enableNodeInspectorCollection` |       `false`       |                    Specify whether to enable `node:inspector` performance collection                    |      v2      |
 |  `nodeInspectorSampleDuration`  |        `10`         |                  Specify the performance collection duration (s) for `node:inspector`                   |      v2      |
