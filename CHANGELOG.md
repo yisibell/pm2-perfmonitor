@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v2.7.0
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.6.3...v2.7.0)
+
+### 🚀 Enhancements
+
+- Add active handles/requests dump supports ([740c4c2](https://github.com/yisibell/pm2-perfmonitor/commit/740c4c2))
+
+### 🏡 Chore
+
+- Add `sprintf` test ([72824d0](https://github.com/yisibell/pm2-perfmonitor/commit/72824d0))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.6.3
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.6.2...v2.6.3)
