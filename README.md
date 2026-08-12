@@ -5,6 +5,7 @@ A pm2 module for **zombie process** and **CPU overload** detection.
 # Features
 
 - Automatically detect **zombie** processes and restart it.
+- [Added in v2.7+] Collect diagnostic data (CPU profile + active handles dump) before zombie restart.
 - Monitor the number of zombie process restarts (`pm2 monit`).
 - [Added in v2] Support **CPU overload** protection (automatic restart + `perf` collection).
 - [Added in v2] Monitor the number of CPU Overload process restarts (`pm2 monit`).
@@ -36,7 +37,8 @@ $ pm2 uninstall pm2-perfmonitor
 |     `cpuOverloadDetection`      |       `false`       |                            Specify whether to enable CPU overload protection                            |      v2      |
 |     `cpuOverloadThreshold`      |        `99`         |                           Specify the threshold for determining CPU overload                            |      v2      |
 |      `cpuOverloadMaxHits`       |         `5`         | Maximum number of consecutive occurrences of CPU overload allowed (automatically restarts when reached) |      v2      |
-| `enableNodeInspectorCollection` |       `false`       |                    Specify whether to enable `node:inspector` performance collection                    |      v2      |
+| `enableNodeInspectorOnCpuOverload` |       `false`       |                    Specify whether to enable `node:inspector` performance collection for CPU overload                   |      v2      |
+| `enableNodeInspectorOnZombie` |       `true`        |           Specify whether to enable `node:inspector` diagnostic collection before zombie process restart (CPU profile + active handles dump)            |      v2.7+   |
 |  `nodeInspectorSampleDuration`  |        `10`         |                  Specify the performance collection duration (s) for `node:inspector`                   |      v2      |
 |     `enablePerfCollection`      |       `false`       |                         Specify whether to enable `perf` performance collection                         |      v2      |
 |    `perfReportGenerationDir`    | `/var/log/pm2/perf` |                   Specify the directory for generating performance reports for `perf`                   |      v2      |
@@ -46,6 +48,42 @@ $ pm2 uninstall pm2-perfmonitor
 
 
 > Please see the details for all configurable options：[Default Options](./lib//defaults.js)
+
+# Zombie Diagnostic Output
+
+When `enableNodeInspectorOnZombie` is enabled, the worker process generates the following files before restart:
+
+| File | Path | Description |
+|------|------|-------------|
+| Active Resources | `/var/log/pm2/active-resources.{pid}.{timestamp}.json` | Active handles (sockets, timers, servers) and requests — **directly shows which backend service is stuck** |
+| CPU Profile | `/var/log/pm2/cpu-profile.{pid}.{timestamp}.cpuprofile` | V8 CPU profile — open with Chrome DevTools (`chrome://inspect`) for analysis |
+
+**`active-resources.json` example:**
+
+```json
+{
+  "pid": 15460,
+  "timestamp": "2026-08-12T10:14:03.242Z",
+  "uptime": "8372.50 s",
+  "memory": { "rss": "150.25 MB", "heapTotal": "80.00 MB", "heapUsed": "50.12 MB", "external": "1.00 MB" },
+  "handleCount": 5,
+  "requestCount": 1,
+  "handles": [
+    { "type": "Server", "address": { "port": 3390 } },
+    { "type": "Socket", "remoteAddress": "10.0.1.23", "remotePort": 80, "readyState": "open", "bytesRead": 0, "bytesWritten": 512 },
+    { "type": "Socket", "remoteAddress": "10.0.1.24", "remotePort": 6379, "readyState": "open", "bytesRead": 1234 },
+    { "type": "Socket", "remoteAddress": "10.0.1.23", "remotePort": 80, "readyState": "opening" }
+  ],
+  "requests": [
+    { "type": "TCPConnectWrap" }
+  ]
+}
+```
+
+- `bytesWritten > 0 && bytesRead === 0` → request sent but no response received (backend hang)
+- `readyState: "opening"` + `TCPConnectWrap` → TCP handshake stuck (backend unreachable)
+- `readyState: "open"` + `bytesRead > 0` → connection is alive and responsive (normal)
+- Combine `remoteAddress:remotePort` with server-side access logs to identify which specific API endpoint is stuck.
 
 # How to set these values ?
 
