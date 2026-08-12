@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.7.2
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.7.1...v2.7.2)
+
+### 🏡 Chore
+
+- Set `enableNodeInspectorOnZombie` defaults to `false` ([c0671f3](https://github.com/yisibell/pm2-perfmonitor/commit/c0671f3))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v2.7.1
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.7.0...v2.7.1)
