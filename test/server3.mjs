@@ -80,6 +80,71 @@ const stopCpuProfile = async () => {
   isProfiling = false
 }
 
+/**
+ * Dump active handles 和 active requests
+ * 用于诊断 CPU 0% 僵尸：直接看到事件循环在等哪个 socket/timer
+ */
+const dumpActiveResources = () => {
+  try {
+    const handles = process._getActiveHandles?.() || []
+    const requests = process._getActiveRequests?.() || []
+
+    const mem = process.memoryUsage()
+
+    const summary = {
+      pid: process.pid,
+      timestamp: new Date().toISOString(),
+      uptime: `${process.uptime().toFixed(2)} s`,
+      memory: {
+        rss: `${(mem.rss / 1024 / 1024).toFixed(2)} MB`,
+        heapTotal: `${(mem.heapTotal / 1024 / 1024).toFixed(2)} MB`,
+        heapUsed: `${(mem.heapUsed / 1024 / 1024).toFixed(2)} MB`,
+        external: `${(mem.external / 1024 / 1024).toFixed(2)} MB`,
+      },
+      handleCount: handles.length,
+      requestCount: requests.length,
+      handles: handles.map((h) => {
+        const cname = h.constructor?.name || typeof h
+        const info = { type: cname }
+
+        if (cname === 'Socket') {
+          info.remoteAddress = h.remoteAddress
+          info.remotePort = h.remotePort
+          info.localPort = h.localPort
+          info.readyState = h.readyState
+          info.readable = h.readable
+          info.writable = h.writable
+          info.destroyed = h.destroyed
+          info.bytesRead = h.bytesRead
+          info.bytesWritten = h.bytesWritten
+        } else if (cname === 'Server') {
+          info.address = h.address?.()
+        } else if (cname === 'Timeout') {
+          info.idleTimeout = h._idleTimeout
+          info.hasRef = h.hasRef?.()
+        }
+
+        return info
+      }),
+      requests: requests.map((r) => ({
+        type: r.constructor?.name || typeof r,
+      })),
+    }
+
+    const dir = getOutputDir()
+    const fileName = `active-resources.${process.pid}.${Date.now()}.json`
+    const filePath = path.join(dir, fileName)
+    fs.writeFileSync(filePath, JSON.stringify(summary, null, 2))
+
+    console.info(
+      '[cpu-profile]',
+      `Active resources dumped: ${filePath} (${handles.length} handles, ${requests.length} requests)`,
+    )
+  } catch (err) {
+    console.error('[cpu-profile] dumpActiveResources failed:', err)
+  }
+}
+
 const run = () => {
   const outputDir = getOutputDir()
 
@@ -92,6 +157,9 @@ const run = () => {
       const eventName = packet?.data?.event
 
       if (eventName === 'pm2-perfmonitor:cpu-profile-start') {
+        // 先 dump active handles/requests — 这是 CPU 0% 僵尸诊断的核心数据
+        dumpActiveResources()
+
         if (isProfiling) {
           await stopCpuProfile()
         }
