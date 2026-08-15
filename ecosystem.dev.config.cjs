@@ -5,7 +5,7 @@ module.exports = {
   apps: [
     {
       name: 'app-dev',
-      script: './test/server3.mjs',
+      script: './example-apps/diagnostic-server.mjs',
       exec_mode: 'cluster',
       instances: 4,
     },

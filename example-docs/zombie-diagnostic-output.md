@@ -30,6 +30,8 @@ process.on('message', (msg) => {
 })
 ```
 
+A complete runnable example app that implements this listener: [../example-apps/diagnostic-server.mjs](../example-apps/diagnostic-server.mjs) (`pm2 start ecosystem.dev.config.cjs` to run it together with the module).
+
 ## Example output
 
 In this example, the app dumps the following files when it receives

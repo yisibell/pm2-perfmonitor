@@ -63,7 +63,7 @@ Version suffix syntax (npm semver, so ranges also apply when updating):
 
 # Zombie Diagnostic Output
 
-When `enableNodeInspectorOnZombie` is enabled, the module sends `cpu-profile-start` / `cpu-profile-stop` messages to the zombie process right before restarting it. Collecting and dumping the diagnostic data (CPU profile + active handles) is up to the app side — see the example: [Zombie Diagnostic Output Example](./examples/zombie-diagnostic-output.md)
+When `enableNodeInspectorOnZombie` is enabled, the module sends `cpu-profile-start` / `cpu-profile-stop` messages to the zombie process right before restarting it. Collecting and dumping the diagnostic data (CPU profile + active handles) is up to the app side — see the example: [Zombie Diagnostic Output Example](./example-docs/zombie-diagnostic-output.md)
 
 # How to set these values ?
 

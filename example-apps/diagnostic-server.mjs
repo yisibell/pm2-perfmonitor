@@ -8,7 +8,7 @@ const { PORT = 3000 } = process.env
 
 const server = createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' })
-  res.end('(server 3) Hello World!\n')
+  res.end('(diagnostic server) Hello World!\n')
 })
 
 // starts a simple http server locally on port 3000
