@@ -5,7 +5,7 @@ A pm2 module for **zombie process** and **CPU overload** detection.
 # Features
 
 - Automatically detect **zombie** processes and restart it.
-- [Added in v2.7+] Collect diagnostic data (CPU profile + active handles dump) before zombie restart.
+- [Added in v2.7+] Notify the zombie process (`cpu-profile-start` / `cpu-profile-stop` messages) to collect diagnostic data (CPU profile + active handles dump) before restart.
 - Monitor the number of zombie process restarts (`pm2 monit`).
 - [Added in v2] Support **CPU overload** protection (automatic restart + `perf` collection).
 - [Added in v2] Monitor the number of CPU Overload process restarts (`pm2 monit`).
@@ -13,12 +13,24 @@ A pm2 module for **zombie process** and **CPU overload** detection.
 # Installation
 
 ```bash
-# install or update
+# install or update (defaults to latest)
 $ pm2 install pm2-perfmonitor
+
+# install or update to a specific version
+$ pm2 install pm2-perfmonitor@2.7.2
+
+# install or update to the latest version matching a range
+$ pm2 install pm2-perfmonitor@~2.7
 
 # uninstall
 $ pm2 uninstall pm2-perfmonitor
 ```
+
+Version suffix syntax (npm semver, so ranges also apply when updating):
+
+- `@2.7.2` — an exact version
+- `@~2.7` — the latest `2.7.x` patch release (other ranges like `@^2.7.0` work too)
+- no suffix — the latest version (default)
 
 > NOTE: the command is `pm2 install` NOT `npm install`
 
@@ -26,14 +38,14 @@ $ pm2 uninstall pm2-perfmonitor
 
 |            Property             |      Defaults       |                                               Description                                               |  Supported   |
 | :-----------------------------: | :-----------------: | :-----------------------------------------------------------------------------------------------------: | :----------: |
-|            `enabled`            |       `true`        |                                  Specify whether to enable this module                                  | v1 and above |
-|          `excludeApps`          |          -          |                Specify the application name that needs to be excluded from guardianship                 | v1 and above |
-|          `includeApps`          |          -          |                          Specify the application name that needs to be guarded                          | v1 and above |
-|        `workerInterval`         |       `60000`       |                                   Timed task execution interval (ms)                                    | v1 and above |
-|        `zombieDetection`        |       `true`        |                           Specify whether to enable zombie process protection                           | v1 and above |
-|         `zombieMaxHits`         |        `10`         |                        Specify the maximum occurrence frequency of zombie status                        | v1 and above |
-| `autoRestartWhenZombieDetected` |       `true`        |                        Specify whether to automatically restart zombie processes                        | v1 and above |
-|       `zombieMaxRestarts`       |         `0`         |      Specify the maximum number of restarts for zombie processes (set to `0` to indicate no limit)      | v1 and above |
+|            `enabled`            |       `true`        |                                  Specify whether to enable this module                                  | v1+ |
+|          `excludeApps`          |          -          |                Specify the application name that needs to be excluded from guardianship                 | v1+ |
+|          `includeApps`          |          -          |                          Specify the application name that needs to be guarded                          | v1+ |
+|        `workerInterval`         |       `60000`       |                                   Timed task execution interval (ms)                                    | v1+ |
+|        `zombieDetection`        |       `true`        |                           Specify whether to enable zombie process protection                           | v1+ |
+|         `zombieMaxHits`         |        `10`         |                        Specify the maximum occurrence frequency of zombie status                        | v1+ |
+| `autoRestartWhenZombieDetected` |       `true`        |                        Specify whether to automatically restart zombie processes                        | v1+ |
+|       `zombieMaxRestarts`       |         `0`         |      Specify the maximum number of restarts for zombie processes (set to `0` to indicate no limit)      | v1+ |
 |     `cpuOverloadDetection`      |       `false`       |                            Specify whether to enable CPU overload protection                            |      v2      |
 |     `cpuOverloadThreshold`      |        `99`         |                           Specify the threshold for determining CPU overload                            |      v2      |
 |      `cpuOverloadMaxHits`       |         `5`         | Maximum number of consecutive occurrences of CPU overload allowed (automatically restarts when reached) |      v2      |
@@ -51,39 +63,7 @@ $ pm2 uninstall pm2-perfmonitor
 
 # Zombie Diagnostic Output
 
-When `enableNodeInspectorOnZombie` is enabled, the worker process generates the following files before restart:
-
-| File | Path | Description |
-|------|------|-------------|
-| Active Resources | `/var/log/pm2/active-resources.{pid}.{timestamp}.json` | Active handles (sockets, timers, servers) and requests — **directly shows which backend service is stuck** |
-| CPU Profile | `/var/log/pm2/cpu-profile.{pid}.{timestamp}.cpuprofile` | V8 CPU profile — open with Chrome DevTools (`chrome://inspect`) for analysis |
-
-**`active-resources.json` example:**
-
-```json
-{
-  "pid": 15460,
-  "timestamp": "2026-08-12T10:14:03.242Z",
-  "uptime": "8372.50 s",
-  "memory": { "rss": "150.25 MB", "heapTotal": "80.00 MB", "heapUsed": "50.12 MB", "external": "1.00 MB" },
-  "handleCount": 5,
-  "requestCount": 1,
-  "handles": [
-    { "type": "Server", "address": { "port": 3390 } },
-    { "type": "Socket", "remoteAddress": "10.0.1.23", "remotePort": 80, "readyState": "open", "bytesRead": 0, "bytesWritten": 512 },
-    { "type": "Socket", "remoteAddress": "10.0.1.24", "remotePort": 6379, "readyState": "open", "bytesRead": 1234 },
-    { "type": "Socket", "remoteAddress": "10.0.1.23", "remotePort": 80, "readyState": "opening" }
-  ],
-  "requests": [
-    { "type": "TCPConnectWrap" }
-  ]
-}
-```
-
-- `bytesWritten > 0 && bytesRead === 0` → request sent but no response received (backend hang)
-- `readyState: "opening"` + `TCPConnectWrap` → TCP handshake stuck (backend unreachable)
-- `readyState: "open"` + `bytesRead > 0` → connection is alive and responsive (normal)
-- Combine `remoteAddress:remotePort` with server-side access logs to identify which specific API endpoint is stuck.
+When `enableNodeInspectorOnZombie` is enabled, the module sends `cpu-profile-start` / `cpu-profile-stop` messages to the zombie process right before restarting it. Collecting and dumping the diagnostic data (CPU profile + active handles) is up to the app side — see the example: [Zombie Diagnostic Output Example](./examples/zombie-diagnostic-output.md)
 
 # How to set these values ?
 
