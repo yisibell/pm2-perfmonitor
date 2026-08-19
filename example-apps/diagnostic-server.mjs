@@ -67,11 +67,11 @@ const startCpuProfile = async () => {
   isProfiling = true
 }
 
-const stopCpuProfile = async () => {
+const stopCpuProfile = async (type) => {
   if (!isProfiling || !session) return
   const result = await sessionPost('Profiler.stop')
   const dir = getOutputDir()
-  const fileName = `cpu-profile.${process.pid}.${Date.now()}.cpuprofile`
+  const fileName = `cpu-profile.${type}.${process.pid}.${Date.now()}.cpuprofile`
   const filePath = path.join(dir, fileName)
   fs.writeFileSync(filePath, JSON.stringify(result.profile))
   await sessionPost('Profiler.disable')
@@ -84,7 +84,7 @@ const stopCpuProfile = async () => {
  * Dump active handles 和 active requests
  * 用于诊断 CPU 0% 僵尸：直接看到事件循环在等哪个 socket/timer
  */
-const dumpActiveResources = () => {
+const dumpActiveResources = (type) => {
   try {
     const handles = process._getActiveHandles?.() || []
     const requests = process._getActiveRequests?.() || []
@@ -92,6 +92,7 @@ const dumpActiveResources = () => {
     const mem = process.memoryUsage()
 
     const summary = {
+      type,
       pid: process.pid,
       timestamp: new Date().toISOString(),
       uptime: `${process.uptime().toFixed(2)} s`,
@@ -132,7 +133,7 @@ const dumpActiveResources = () => {
     }
 
     const dir = getOutputDir()
-    const fileName = `active-resources.${process.pid}.${Date.now()}.json`
+    const fileName = `active-resources.${type}.${process.pid}.${Date.now()}.json`
     const filePath = path.join(dir, fileName)
     fs.writeFileSync(filePath, JSON.stringify(summary, null, 2))
 
@@ -155,18 +156,19 @@ const run = () => {
 
     try {
       const eventName = packet?.data?.event
+      const eventType = packet?.data?.data?.type || 'unknown'
 
       if (eventName === 'pm2-perfmonitor:cpu-profile-start') {
         // 先 dump active handles/requests — 这是 CPU 0% 僵尸诊断的核心数据
-        dumpActiveResources()
+        dumpActiveResources(eventType)
 
         if (isProfiling) {
-          await stopCpuProfile()
+          await stopCpuProfile(eventType)
         }
 
         await startCpuProfile()
       } else if (eventName === 'pm2-perfmonitor:cpu-profile-stop') {
-        await stopCpuProfile()
+        await stopCpuProfile(eventType)
       }
     } catch (err) {
       console.error('[cpu-profile]', err)
