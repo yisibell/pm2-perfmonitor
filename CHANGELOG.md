@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v2.8.1
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.8.0...v2.8.1)
+
 ## v2.8.0
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.7.2...v2.8.0)
