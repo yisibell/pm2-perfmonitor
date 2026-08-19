@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v2.8.0
+
+[compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.7.2...v2.8.0)
+
+### 🚀 Enhancements
+
+- Add cpu profile emit event type ([3bd4cf4](https://github.com/yisibell/pm2-perfmonitor/commit/3bd4cf4))
+
+### 📖 Documentation
+
+- Update docs ([0f5bb84](https://github.com/yisibell/pm2-perfmonitor/commit/0f5bb84))
+- Update example dirs and docs ([0709f74](https://github.com/yisibell/pm2-perfmonitor/commit/0709f74))
+
+### ❤️ Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+- Elenh ([@yisibell](https://github.com/yisibell))
+
 ## v2.7.2
 
 [compare changes](https://github.com/yisibell/pm2-perfmonitor/compare/v2.7.1...v2.7.2)
